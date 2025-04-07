@@ -1,3 +1,8 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .logo{
     width: 7%;
     height: 7%;
@@ -7,3 +12,13 @@
     width: 100%;
     object-fit: contain;
 }
+.footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.admin_image{
+    width: 100px;
+    object-fit: contain;
+}
+
