@@ -1,16 +1,22 @@
+<?php
+    include('include/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Website</title>
-<link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
 
-<!--bootstrap link-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<!-- font awsome link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--bootstrap link-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <!-- font awsome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <body>
     <div class="container-fluid p-0">
     <!--first child-->
@@ -149,42 +155,32 @@
                     <li class="nav-item bg-info">
                         <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand1</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand1</a>
-                    </li>                   
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand1</a>
-                    </li>                    
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand1</a>
-                    </li>                   
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand1</a>
-                    </li>
+                    <?php
+                        $select_brands="select * from `brands`";
+                        $result_brands=mysqli_query($con,$select_brands);
+                        while($row_data=mysqli_fetch_assoc($result_brands)){
+                            $brand_title=$row_data['brand_title'];
+                            $brand_id=$row_data['brand_id'];
+                            echo "<li class='nav-item'>
+        <a href='index.php?brand=$brand_id' class='nav-link text-light'>$brand_title</a></li>";
+                        }
+                    ?>
                 </ul>
     <!--Categories-->
     <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
                         <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">cat1</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">cat2</a>
-                    </li>                   
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">cat3</a>
-                    </li>                    
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">cat4</a>
-                    </li>                   
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">cat5</a>
-                    </li>
+                    <?php
+                        $select_category="select * from `categories`";
+                        $result_category=mysqli_query($con,$select_category);
+                        while($row=mysqli_fetch_assoc($result_category)){
+                            $category_title=$row['category_title'];
+                            $category_id=$row['category_id'];
+                            echo "<li class='nav-item'>
+        <a href='index.php?category=$category_id' class='nav-link text-light'>$category_title</a></li>";                            
+                        }
+                    ?>                 
                 </ul>   
             </div>
         </div>
