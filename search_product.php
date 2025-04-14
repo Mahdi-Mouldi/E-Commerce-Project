@@ -83,7 +83,7 @@
             <div class="row"> 
                 <!-- featching products -->
                 <?php
-                get_products();
+                search_product();
                 get_unique_category();
                 get_unique_brand();
 
