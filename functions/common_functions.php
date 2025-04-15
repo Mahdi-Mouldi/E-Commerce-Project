@@ -21,7 +21,6 @@
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
 <a href='#' class='btn btn-primary'>Add to cart</a>
-<a href='#' class='btn btn-secondary'>View more</a>
 </div>
 </div>
 </div>
@@ -51,7 +50,6 @@
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
 <a href='#' class='btn btn-primary'>Add to cart</a>
-<a href='#' class='btn btn-secondary'>View more</a>
 </div>
 </div>
 </div>
@@ -85,7 +83,6 @@
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
 <a href='#' class='btn btn-primary'>Add to cart</a>
-<a href='#' class='btn btn-secondary'>View more</a>
 </div>
 </div>
 </div>
@@ -118,7 +115,6 @@ function get_unique_brand(){
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
 <a href='#' class='btn btn-primary'>Add to cart</a>
-<a href='#' class='btn btn-secondary'>View more</a>
 </div>
 </div>
 </div>
@@ -175,7 +171,6 @@ function get_unique_brand(){
     <h5 class='card-title'>$product_title</h5>
     <p class='card-text'>$product_description</p>
     <a href='#' class='btn btn-primary'>Add to cart</a>
-    <a href='#' class='btn btn-secondary'>View more</a>
     </div>
     </div>
     </div>
