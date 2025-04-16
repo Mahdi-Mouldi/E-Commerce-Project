@@ -1,3 +1,7 @@
+<?php
+    include('../include/connect.php');
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,3 +53,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+    if(isset($_POST['user_register'])){
+        $user_username=$_POST['username'];
+        $user_email=$_POST['user_email'];
+        $user_password=$_POST['user_password'];
+        $insert_query="insert into `user_table` (username,user_email,user_password) values ('$user_username','$user_email','$user_password')";
+        $execute_query=mysqli_query($con,$insert_query);
+        if($execute_query){
+            $_SESSION['username'] = $user_username;
+            echo "<script>window.open('../index.php', '_self')</script>";
+            echo "<script>alert('user register succefully')</script>"; 
+        }else{
+            die(mysqli_connect_error()); 
+        }
+    }
+?>

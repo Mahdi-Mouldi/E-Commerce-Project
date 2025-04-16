@@ -20,7 +20,7 @@
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
-<a href='#' class='btn btn-primary'>Add to cart</a>
+<a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
 </div>
@@ -49,7 +49,7 @@
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
-<a href='#' class='btn btn-primary'>Add to cart</a>
+<a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
 </div>
@@ -82,7 +82,7 @@
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
-<a href='#' class='btn btn-primary'>Add to cart</a>
+<a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
 </div>
@@ -114,7 +114,7 @@ function get_unique_brand(){
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
-<a href='#' class='btn btn-primary'>Add to cart</a>
+<a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
 </div>
@@ -170,12 +170,67 @@ function get_unique_brand(){
     <div class='card-body'>
     <h5 class='card-title'>$product_title</h5>
     <p class='card-text'>$product_description</p>
-    <a href='#' class='btn btn-primary'>Add to cart</a>
+    <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
     </div>
     </div>
     </div>
     ";
         }
     }
+}
+
+function getIPAddress() {
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        // IP depuis un partage internet
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        // IP depuis un proxy
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        // IP standard
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
+// $ip=getIPAddress();
+
+
+function cart(){
+    if(isset($_GET['add_to_cart'])){
+        global $con;
+        $get_product_id=$_GET['add_to_cart'];
+        $ip=getIPAddress();
+        $select_query="select * from `cart_details` where ip_adress='$ip' and product_id=$get_product_id";
+        $result_select=mysqli_query($con,$select_query);
+        $num_of_rows=mysqli_num_rows($result_select);
+        if($num_of_rows>0){
+            echo "<script>alert('this item is already present in cart')</script>";
+            echo "<script>window.open('index.php','_self')</script>";
+        }else{
+            $insert_query="insert into `cart_details` (product_id,ip_adress,quantity) values('$get_product_id','$ip',0)";
+            $result_query=mysqli_query($con,$insert_query);
+            echo "<script>alert('item is added to cart')</script>";
+            echo "<script>window.open('index.php','_self')</script>";
+        }
+    }
+}
+function cart_item(){
+    if(isset($_GET['add_to_cart'])){
+        global $con;
+        $ip=getIPAddress();
+        $select_query="select * from `cart_details` where ip_adress='$ip' ";
+        $result_select=mysqli_query($con,$select_query);
+        $count_cart_items=mysqli_num_rows($result_select);
+
+}else{
+    global $con;
+    $ip=getIPAddress();
+    $select_query="select * from `cart_details` where ip_adress='$ip' ";
+    $result_select=mysqli_query($con,$select_query);
+    $count_cart_items=mysqli_num_rows($result_select);
+
+}
+echo $count_cart_items;
 }
 ?>
