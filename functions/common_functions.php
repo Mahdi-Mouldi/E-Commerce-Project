@@ -20,6 +20,7 @@
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
+<p class='card-text'>Price: $product_price/-</p>
 <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
@@ -49,6 +50,8 @@
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
+<p class='card-text'>Price: $product_price/-</p>
+
 <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
@@ -82,6 +85,9 @@
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
+<p class='card-text'>Price: $product_price/-</p>
+
+
 <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
@@ -114,6 +120,9 @@ function get_unique_brand(){
 <div class='card-body'>
 <h5 class='card-title'>$product_title</h5>
 <p class='card-text'>$product_description</p>
+<p class='card-text'>Price: $product_price/-</p>
+
+
 <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
 </div>
 </div>
@@ -170,6 +179,8 @@ function get_unique_brand(){
     <div class='card-body'>
     <h5 class='card-title'>$product_title</h5>
     <p class='card-text'>$product_description</p>
+<p class='card-text'>Price: $product_price/-</p>
+
     <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
     </div>
     </div>
@@ -219,7 +230,7 @@ function cart_item(){
     if(isset($_GET['add_to_cart'])){
         global $con;
         $ip=getIPAddress();
-        $select_query="select * from `cart_details` where ip_adress='$ip' ";
+        $select_query="select * from `cart_details` where ip_adress='$ip'  ";
         $result_select=mysqli_query($con,$select_query);
         $count_cart_items=mysqli_num_rows($result_select);
 
@@ -232,5 +243,23 @@ function cart_item(){
 
 }
 echo $count_cart_items;
+}
+
+// total price function
+function total_cart_price(){
+    global $con;
+    $get_ip_adress=getIPAddress();
+    $total_price=0;
+    $cart_query="select * from `cart_details` where ip_adress='$get_ip_adress'";
+    $result=mysqli_query($con,$cart_query);
+    while($row=mysqli_fetch_array($result)){
+        $product_id=$row['product_id'];
+        $select_products="select * from `products` where product_id='$product_id'";
+        $result_select=mysqli_query($con,$select_products);
+        while($row_product_price=mysqli_fetch_array($result_select)){
+            $total_price += $row_product_price['product_price'];
+        }
+    }
+    echo $total_price;
 }
 ?>
