@@ -67,7 +67,9 @@
         ?>
         <!-- table -->
         <div class="container">
+
             <div class="row">
+                <form action="" method="post">
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
@@ -94,23 +96,35 @@
                                 $product_title=$row_product_price['product_title'];
                                 $product_image=$row_product_price['product_image'];
                                 $total_price += $row_product_price['product_price'];
+                                
+                         
                     
                     ?>
                     <tbody>
                         <tr>
                             <td><?php echo $product_title?></td>
                             <td><img src="admin_area/product_images/<?php echo $product_image?>" alt="" class="cart_img"></td>
-                            <td><input type="text" name="" id="" class="form-control"></td>
+                            <td><input type="text" name="qty" id="" class="form-control"></td>
+                            <!-- <?php
+                                $ip=getIPAddress();
+                                if(isset($_POST['update_cart'])){
+                                    $quantity=$_POST['qty'];
+                                    $update_query=" update `cart_details` set quantity=$quantity where ip_adress='$ip'";
+                                    $result_update=mysqli_query($con,$update_query);
+                                    $total_price=$total_price * $quantity;
+                                }
+                            ?> -->
                             <td><?php echo $product_price?>/-</td>
                             <td><input type="checkbox" name="" id=""></td>
                             <td>
-                                <button class="bg-info px-3 py-2 border-0 mx-3">Update</button>
+                                <!-- <button class="bg-info px-3 py-2 border-0 mx-3">Update</button> -->
+                                <input type="submit" value="Update Cart" class="bg-info px-3 py-2 border-0 mx-3" name="update_cart">
                                 <button class="bg-info px-3 py-2 border-0 mx-3">Remove</button>
                             </td>
                         </tr>
                         <?php
+                       }
                     }
-                            }
                         ?>
                     </tbody>
                     <!-- php code -->
@@ -124,8 +138,10 @@
                     <a href="#"><button class="bg-secondary px-3 py-2 border-0">Checkout</button></a>
 
                 </div>
+                
             </div>
-        </div>       
+        </div>  
+        </form>     
             <!--last child-->
         <div class="bg-info p-3 text-center ">
             <p>All rights reserved ©- Designed by Mahdi-2025</p>
