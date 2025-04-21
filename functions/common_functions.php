@@ -1,5 +1,5 @@
 <?php
-    include('./include/connect.php');
+    // include('./include/connect.php');
     function get_products(){
         if(!isset($_GET['category'])){
             if(!isset($_GET['brand'])){

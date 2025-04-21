@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Website</title>
+    <title>E-Commerce Website-Checkout</title>
     <link rel="stylesheet" href="assets/style.css">
 
     <!--bootstrap link-->
@@ -36,18 +36,12 @@
                             <a class="nav-link" href="display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="user_area/user_register.php">Register</a>
+                            <a class="nav-link" href="user_area/user_register.php">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> <sup><?php cart_item(); ?></sup></a>
-
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Total Price:100/-</a>
-                        </li>
+                        
                         
                     </ul>
                     <form class="d-flex" action="search_product.php" method="GET">
@@ -64,10 +58,14 @@
                             <a class="nav-link" href="#">Welcome Guest</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="user_area/user_login.php">Login</a>
+                            <a class="nav-link" href="user_area/user_login.php">Login</a>
                 </li>
             </ul>
         </nav>
+        <!-- calling cat  -->
+         <?php
+            cart();
+         ?>
         <!--third-child-->
 
         <div class="bg-light">
@@ -82,13 +80,13 @@
                 <!--Products-->
 
             <div class="row"> 
-                <!-- featching products -->
                 <?php
-                search_product();
-                get_unique_category();
-                get_unique_brand();
-
-                ?>
+                    if(!isset($_SESSION['username'])){
+                        include('user_area/user_login.php');
+                    }else{
+                        include('../payment.php');
+                    }
+                ?>                
                 
                 
                 </div>
@@ -96,24 +94,7 @@
             </div>
             <div class="col-md-2 bg-secondary p-0">
                 <!--brands-->
-                <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-info">
-                        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
-                    </li>
-                    <?php
-                    get_brands();
-                    ?>
-                </ul>
-    <!--Categories-->
-    <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-info">
-                        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
-                    </li>
-                    <?php
-                    get_categories();
-                    ?>                 
-                </ul>   
-            </div>
+   
         </div>
     <!--last child-->
         <div class="bg-info p-3 text-center ">
