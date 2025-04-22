@@ -1,9 +1,13 @@
 <?php
-    include('../include/connect.php')
+    include('../include/connect.php');
+    // include('../functions/common_functions.php');
+    include_once '../functions/common_functions.php';
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>      
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
@@ -70,6 +74,24 @@
         echo"<script>alert('invalide username or password')</script>";
                         
        }
+    // select cart item
+    $ip=getIPAddress();
+    $select_cart="select * from `cart_details` where ip_adress='$ip'";
+    $result_cart=mysqli_query($con,$select_cart);
+    $cart_count=mysqli_num_rows($result_cart);
+    if($count>0){
+        if($count==1 and $cart_count==0){
+            echo "<script>alert('login succefully')</script>";
+            echo "<script>window.open('profile.php','_self')</script>";
+        }else{
+            echo "<script>alert('login succefully')</script>";
+            echo "<script>window.open('payment.php','_self')</script>";
+        }
+    }else{
+        echo"<script>alert('invalide username or password')</script>";
+    }
+    
+
     }
 ?>
 

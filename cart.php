@@ -117,7 +117,7 @@ if ($count_result > 0) {
         <h4>Subtotal: <span class="text-info">' . $total_price . '/-</span></h4>
         <div>
             <a href="index.php" class="btn btn-outline-info me-2">Continue Shopping</a>
-            <a href="checkout.php" class="btn btn-secondary">Checkout</a>
+            <a href="user_area/checkout.php" class="btn btn-secondary">Checkout</a>
         </div>
     </div>';
 } else {

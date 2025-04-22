@@ -1,6 +1,6 @@
 <?php
-    include('include/connect.php');
-    include('functions/common_functions.php');
+    include('../include/connect.php');
+    include('../functions/common_functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,7 @@
                             <a class="nav-link" href="#">Welcome Guest</a>
                 </li>
                 <li class="nav-item">
-                            <a class="nav-link" href="user_area/user_login.php">Login</a>
+                            <a class="nav-link" href="user_login.php">Login</a>
                 </li>
             </ul>
         </nav>
@@ -82,9 +82,9 @@
             <div class="row"> 
                 <?php
                     if(!isset($_SESSION['username'])){
-                        include('user_area/user_login.php');
+                        include('user_login.php');
                     }else{
-                        include('../payment.php');
+                        include('payment.php');
                     }
                 ?>                
                 

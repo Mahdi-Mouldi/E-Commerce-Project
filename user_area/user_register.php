@@ -91,7 +91,7 @@ include('../functions/common_functions.php');
     if($count>0){
         $_SESSION['username']=$user_username;
         echo "<script>alert('you have items in your cart')</script>";
-        echo "<script>window.open('../checkout.php','_self')</script>";
+        echo "<script>window.open('checkout.php','_self')</script>";
     }else{
         echo "<script>window.open('../index.php','_self')</script>";
 
