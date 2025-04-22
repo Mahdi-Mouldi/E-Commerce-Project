@@ -1,3 +1,6 @@
+<?php
+    include('../include/connect.php')
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +19,12 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-light">
+    <style>
+        body{
+        overflow-x:hidden;
+
+        }
+    </style>
     <div class="container mt-5">
         <div class="row justify-content-center">
         <div class="col-md-6">
@@ -48,3 +57,19 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+    if(isset($_POST['user_login'])){
+        $username=$_POST['username'];
+        $user_password=$_POST['user_password'];
+        $select_query="select * from `user_table` where username='$username' and user_password='$user_password'";
+        $result_select=mysqli_query($con,$select_query);
+        $count=mysqli_num_rows($result_select);
+        if($count>0){
+            echo "<script>alert('login succefully')</script>";
+       }else{
+        echo"<script>alert('invalide username or password')</script>";
+                        
+       }
+    }
+?>
+

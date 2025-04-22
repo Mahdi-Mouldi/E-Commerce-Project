@@ -85,13 +85,13 @@ include('../functions/common_functions.php');
             die(mysqli_error($con));
         }
     }
-    $select_item="select * from `cart_details` where ip_adress=$user_ip";
+    $select_item="select * from `cart_details` where ip_adress='$user_ip'";
     $result_item=mysqli_query($con,$select_item);
     $count=mysqli_num_rows($result_item);
     if($count>0){
         $_SESSION['username']=$user_username;
         echo "<script>alert('you have items in your cart')</script>";
-        echo "<script>window.open('checkout.php','_self')</script>";
+        echo "<script>window.open('../checkout.php','_self')</script>";
     }else{
         echo "<script>window.open('../index.php','_self')</script>";
 
