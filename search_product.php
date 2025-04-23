@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('include/connect.php');
     include('functions/common_functions.php');
 ?>
@@ -60,12 +61,30 @@
     <!-- second child-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto ">
-                <li class="nav-item">
-                            <a class="nav-link" href="#">Welcome Guest</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="user_area/user_login.php">Login</a>
-                </li>
+            <?php
+                    if(!isset($_SESSION['username'])){
+                        echo "<li class='nav-item'>
+                            <a class='nav-link' href='#'>Welcome Guest</a>
+                </li>";  
+                    }else{
+                        echo "<li class='nav-item'>
+                            <a class='nav-link' href='#'>Welcome ".$_SESSION['username'] ."</a>
+                </li>"; 
+                    }
+                ?>
+                
+                <?php
+                    if(!isset($_SESSION['username'])){
+                        echo "<li class='nav-item'>
+                            <a class='nav-link' href='user_area/user_login.php'>Login</a>
+                </li>";
+
+                    }else{
+                        echo "<li class='nav-item'>
+                            <a class='nav-link' href='user_area/user_logout.php'>Logout</a>
+                </li>";
+                    }
+                ?>
             </ul>
         </nav>
         <!--third-child-->

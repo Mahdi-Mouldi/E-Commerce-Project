@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('../include/connect.php');
     // include('../functions/common_functions.php');
     include_once '../functions/common_functions.php';
@@ -63,9 +64,9 @@
 </html>
 <?php
     if(isset($_POST['user_login'])){
-        $username=$_POST['username'];
+        $user_username=$_POST['username'];
         $user_password=$_POST['user_password'];
-        $select_query="select * from `user_table` where username='$username' and user_password='$user_password'";
+        $select_query="select * from `user_table` where username='$user_username' and user_password='$user_password'";
         $result_select=mysqli_query($con,$select_query);
         $count=mysqli_num_rows($result_select);
         if($count>0){
@@ -80,10 +81,15 @@
     $result_cart=mysqli_query($con,$select_cart);
     $cart_count=mysqli_num_rows($result_cart);
     if($count>0){
+        $_SESSION['username']=$user_username;
         if($count==1 and $cart_count==0){
+        $_SESSION['username']=$user_username;
+
             echo "<script>alert('login succefully')</script>";
             echo "<script>window.open('profile.php','_self')</script>";
         }else{
+        $_SESSION['username']=$user_username;
+
             echo "<script>alert('login succefully')</script>";
             echo "<script>window.open('payment.php','_self')</script>";
         }
