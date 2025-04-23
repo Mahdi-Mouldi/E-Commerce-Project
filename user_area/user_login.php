@@ -1,8 +1,8 @@
 <?php
-    session_start();
     include('../include/connect.php');
     // include('../functions/common_functions.php');
     include_once '../functions/common_functions.php';
+    @session_start();        
 
 ?>
 

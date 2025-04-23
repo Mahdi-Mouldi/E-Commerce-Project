@@ -29,6 +29,9 @@
         $ip=getIPAddress();
         $select_query="select * from `user_table` where user_ip='$ip'";
         $res=mysqli_query($con,$select_query);
+        $run_query=mysqli_fetch_array($res);
+        $user_id=$run_query['user_id'];
+        
     ?>
     <div class="container">
         <h2 class="text-center text-info">
@@ -39,7 +42,7 @@
                 <a href="https://www.paypal.com" target="_blank"><img src="../assets/images/pay.jpg" alt=""></a>
             </div>
             <div class="col-md-6">
-                <a href="order.php"><h2 class="text-center">Pay offline</h2></a>
+                <a href="order.php?user_id=<?php echo $user_id?>"><h2 class="text-center">Pay offline</h2></a>
             </div>
         </div>
     </div>
