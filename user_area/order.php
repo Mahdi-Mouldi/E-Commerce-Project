@@ -41,4 +41,11 @@
         echo "<script>window.open('profile.php','_self')</script>";
 
     }
+    // order pending
+    $insert_pending_orders="insert into `orders_pending` (user_id,invoice_number,product_id,quantity,order_status) values ('$user_id','$invoice_number','$product_id','$quantity','$status')";
+    $res_pending=mysqli_query($con,$insert_pending_orders);
+
+    // delete items from cart
+    $delete_item="delete from `cart_details` where ip_adress='$get_ip'";
+    $res_delete=mysqli_query($con,$delete_item);
 ?>

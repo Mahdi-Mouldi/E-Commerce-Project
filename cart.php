@@ -1,6 +1,7 @@
 <?php
     include('include/connect.php');
     include('functions/common_functions.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
