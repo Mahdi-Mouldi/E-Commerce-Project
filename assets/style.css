@@ -17,7 +17,7 @@ body{
     position: absolute;
     bottom: 0;
 }
-.admin_image{
+.ad{
     width: 100px;
     object-fit: contain;
 
