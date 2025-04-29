@@ -64,6 +64,10 @@
         .profile-menu li a:hover {
             background-color: #444;
         }
+        .update_image{
+            width: 100px;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
@@ -87,9 +91,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../display_all.php">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="user_register.php">Register</a>
-                        </li>
+                        <?php
+                        if(isset($_SESSION['username'])){
+                        
+                            echo "<li class='nav-item'>
+                            <a class='nav-link' href='profile.php'>My Account</a>
+                        </li>";
+                        }else{
+                            echo "<li class='nav-item'>
+                            <a class='nav-link' href='user_register.php'>Register</a>
+                        </li>";
+                        }
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
@@ -183,6 +196,9 @@
             get_user_details();
             if(isset($_GET['edit_account'])){
                 include('edit_account.php');
+            }
+            if(isset($_GET['my_orders'])){
+                include('user_orders.php');
             }
             ?>
         </div>

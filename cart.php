@@ -31,8 +31,18 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="display_all.php">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="user_area/user_register.php">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <?php
+                        if(isset($_SESSION['username'])){
+                        
+                            echo "<li class='nav-item'>
+                            <a class='nav-link' href='./user_area/profile.php'>My Account</a>
+                        </li>";
+                        }else{
+                            echo "<li class='nav-item'>
+                            <a class='nav-link' href='./user_area/user_register.php'>Register</a>
+                        </li>";
+                        }
+                        ?>                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> <sup><?php cart_item(); ?></sup></a>
                     </li>

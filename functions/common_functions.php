@@ -277,8 +277,7 @@ function total_cart_price(){
                         $count_rows=mysqli_num_rows($res_orders);
                         if($count_rows>0){
                             echo "<h3>You have <span class='text-danger'>$count_rows</span> pending</h3>
-                            <p><a 
-                            href='profile.php?my_orders'>Order Details</a></p>";
+                            <p><a href='profile.php?my_orders'>Order Details</a></p>";
 
                         }else{
                             echo "<h3>You have <span class='text-danger'>0</span>pending </h3>";
