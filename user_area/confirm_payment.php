@@ -8,6 +8,17 @@ if(isset($_GET['order_id'])){
     $row=mysqli_fetch_assoc($res);
     $invoice_number=$row['invoice_number'];
     $amount=$row['amount_due'];
+    if(isset($_POST['confirm_payment'])){
+        $payment_mode=$_POST['payment_mode'];
+        $insert="insert into `user_payments` (order_id,invoice_number,amount,payment_mode,date) values ('$order_id','$invoice_number','$amount','$payment_mode',NOW())";
+        $res=mysqli_query($con,$insert);
+        if($res){
+            echo "<script>alert('successfully completed the payment')</script>";
+            echo "<script>window.open('profile.php?my_orders','_self')</script>";
+        }
+    }
+    $update_status="update `user_orders` set order_status='Complete'";
+    $res_up=mysqli_query($con,$update_status);
 }
 ?>
 <!DOCTYPE html>

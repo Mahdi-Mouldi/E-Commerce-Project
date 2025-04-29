@@ -17,11 +17,7 @@ body{
     position: absolute;
     bottom: 0;
 }
-.ad{
-    width: 100px;
-    object-fit: contain;
 
-}
 
 .card {
     width: 100%; 
