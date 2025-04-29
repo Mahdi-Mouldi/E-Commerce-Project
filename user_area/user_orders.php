@@ -48,6 +48,7 @@
            $res_select=mysqli_query($con,$select_query);
            $number=1;
            while($row_order=mysqli_fetch_assoc($res_select)){
+            $order_id=$row_order['order_id'];
             $amount_due=$row_order['amount_due'];
             $invoice_number=$row_order['invoice_number'];
             $total_products=$row_order['total_products'];
@@ -61,7 +62,7 @@
           <td>  $invoice_number</td>
           <td> $order_date</td>
           <td> $order_status</td>
-          <td><a href='confirm_payment.php'>Confirm</td>
+          <td><a href='confirm_payment.php?order_id=$order_id'>Confirm</td>
         </tr>";
         $number++;
            }
